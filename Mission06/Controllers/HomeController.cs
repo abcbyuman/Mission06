@@ -21,21 +21,17 @@ namespace Mission06.Controllers
             blahContext = someName;
         }
 
-        public IActionResult Movie ()
-        {
-            return View();
-        }
 
         [HttpGet]
 
-        public IActionResult datingapplication ()
+        public IActionResult Movies ()
         {
             return View();
         }
 
         [HttpPost]
 
-        public IActionResult datingapplication(ApplicationResponse ar)
+        public IActionResult Movies(ApplicationResponse ar)
         {
             blahContext.Add(ar);
             blahContext.SaveChanges();

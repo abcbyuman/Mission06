@@ -23,22 +23,29 @@ namespace Mission06.Models
                 new ApplicationResponse
                 {
                     ApplicationID = 1,
-                    FirstName = "Michael",
-                    LastName = "Scott",
-                    Age = 43,
-                    Phone = "8018018018",
-                    Major = "Paper Stuff",
-                    CreeperStalker = false
+                    Category = "Comedy",
+                    Title = "Hot Rod",
+                    Year = 2007,
+                    Director = "Akiva Schaffer",
+                    Rating = "PG-13",
                 },
                 new ApplicationResponse
                 {
                     ApplicationID = 2,
-                    FirstName = "Creed",
-                    LastName = "Bratton",
-                    Age = 90,
-                    Phone = "803iu2ho2",
-                    Major = "Undeclared",
-                    CreeperStalker = true
+                    Category = "Action",
+                    Title = "The Avengers",
+                    Year = 2012,
+                    Director = "Anthony Russo",
+                    Rating = "PG-13",
+                },
+                new ApplicationResponse
+                {
+                    ApplicationID = 3,
+                    Category = "Comedy",
+                    Title = "Megamind",
+                    Year = 2010,
+                    Director = "Tom McGrath",
+                    Rating = "PG",
                 }
                 );
         }
