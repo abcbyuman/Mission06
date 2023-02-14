@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Application Submitted";
+}
+
+@model Mission06.Models.ApplicationResponse
+
+@if (Model.CreeperStalker == true)
+{
+    <h2>My bad, I forgot Im already taken</h2>
+}
+else
+{
+    <h2>Application received. Thank you @Model.FirstName.</h2>
+}
+
+
+
