@@ -10,9 +10,7 @@ namespace Mission06.Models
     {
         [Key]
         [Required]
-        public int ApplicationID { get; set; }
-        [Required]
-        public string Category { get; set; }
+        public int ApplicationId { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]
@@ -26,5 +24,9 @@ namespace Mission06.Models
         [MaxLength(25)]
         public string Notes { get; set; }
 
+
+        //Build foreign key relationship
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

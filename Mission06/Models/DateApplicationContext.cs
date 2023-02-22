@@ -14,16 +14,27 @@ namespace Mission06.Models
             //Leave blank for now
         }
 
-        public DbSet<ApplicationResponse> responses { get; set; }
+        public DbSet<ApplicationResponse> Responses { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
+        //Seed data
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            _ = mb.Entity<ApplicationResponse>().HasData(
+            mb.Entity<Category>().HasData(
+                    new Category { CategoryId = 1, CategoryName = "Action" },
+                    new Category { CategoryId = 2, CategoryName = "Comedy" },
+                    new Category { CategoryId = 3, CategoryName = "Mystery" },
+                    new Category { CategoryId = 4, CategoryName = "Horror" },
+                    new Category { CategoryId = 5, CategoryName = "N/A" }
+
+                );
+
+            mb.Entity<ApplicationResponse>().HasData(
 
                 new ApplicationResponse
                 {
-                    ApplicationID = 1,
-                    Category = "Comedy",
+                    ApplicationId = 1,
+                    CategoryId = 2,
                     Title = "Hot Rod",
                     Year = 2007,
                     Director = "Akiva Schaffer",
@@ -31,8 +42,8 @@ namespace Mission06.Models
                 },
                 new ApplicationResponse
                 {
-                    ApplicationID = 2,
-                    Category = "Action",
+                    ApplicationId = 2,
+                    CategoryId = 1,
                     Title = "The Avengers",
                     Year = 2012,
                     Director = "Anthony Russo",
@@ -40,12 +51,12 @@ namespace Mission06.Models
                 },
                 new ApplicationResponse
                 {
-                    ApplicationID = 3,
-                    Category = "Comedy",
+                    ApplicationId = 3,
+                    CategoryId = 2,
                     Title = "Megamind",
                     Year = 2010,
                     Director = "Tom McGrath",
-                    Rating = "PG",
+                    Rating = "PG  ",
                 }
                 );
         }

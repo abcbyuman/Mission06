@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission06.Models;
 using System;
@@ -11,14 +12,13 @@ namespace Mission06.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private DateApplicationContext blahContext { get; set; }
+
+        private DateApplicationContext daContext { get; set; }
 
         //Constructor
-        public HomeController(ILogger<HomeController> logger, DateApplicationContext someName)
+        public HomeController(DateApplicationContext someName)
         {
-            _logger = logger;
-            blahContext = someName;
+            daContext = someName;
         }
 
 
@@ -26,6 +26,8 @@ namespace Mission06.Controllers
 
         public IActionResult Movies ()
         {
+            ViewBag.Categories = daContext.Categories.ToList();
+
             return View();
         }
 
@@ -33,9 +35,22 @@ namespace Mission06.Controllers
 
         public IActionResult Movies(ApplicationResponse ar)
         {
-            blahContext.Add(ar);
-            blahContext.SaveChanges();
+            daContext.Add(ar);
+            daContext.SaveChanges();
             return View("Confirmation", ar);
+        }
+
+        [HttpGet]
+        public IActionResult Waitlist()
+        {
+            
+            var applications = daContext.Responses
+                .Include(x => x.Category)
+                //.Where(blah => blah.Rating == 3)
+                .OrderBy(x => x.Title)
+                .ToList();
+
+            return View(applications);
         }
 
 
@@ -50,10 +65,5 @@ namespace Mission06.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
