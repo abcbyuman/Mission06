@@ -35,9 +35,19 @@ namespace Mission06.Controllers
 
         public IActionResult Movies(ApplicationResponse ar)
         {
-            daContext.Add(ar);
-            daContext.SaveChanges();
-            return View("Confirmation", ar);
+            if (ModelState.IsValid)
+            {
+                daContext.Add(ar);
+                daContext.SaveChanges();
+                return View("Confirmation", ar);
+            }
+            else
+            {
+
+                ViewBag.Categories = daContext.Categories.ToList();
+                return View(ar);
+            }
+
         }
 
         [HttpGet]
@@ -63,6 +73,41 @@ namespace Mission06.Controllers
         public IActionResult Podcast()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit (int applicationid)
+        {
+            ViewBag.Categories = daContext.Categories.ToList();
+
+            var application = daContext.Responses.Single(x => x.ApplicationId == applicationid);
+
+            return View("Movies", application);
+        }
+
+        [HttpPost]
+        public IActionResult Edit (ApplicationResponse blah)
+        {
+            daContext.Update(blah);
+            daContext.SaveChanges();
+
+            return RedirectToAction("Waitlist");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int applicationid)
+        {
+            var application = daContext.Responses.Single(x => x.ApplicationId == applicationid);
+            return View(application);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(ApplicationResponse ar)
+        {
+            daContext.Responses.Remove(ar);
+            daContext.SaveChanges();
+
+            return RedirectToAction("Waitlist");
         }
 
     }

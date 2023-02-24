@@ -11,7 +11,7 @@ namespace Mission06.Models
         [Key]
         [Required]
         public int ApplicationId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "You at LEAST need a title...")]
         public string Title { get; set; }
         [Required]
         public int Year { get; set; }

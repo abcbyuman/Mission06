@@ -11,6 +11,7 @@ namespace Mission06.Models
         [Key]
         [Required]
         public int CategoryId { get; set; }
+
         public string CategoryName { get; set; }
     }
 }

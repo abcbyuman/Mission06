@@ -25,7 +25,7 @@ namespace Mission06.Models
                     new Category { CategoryId = 2, CategoryName = "Comedy" },
                     new Category { CategoryId = 3, CategoryName = "Mystery" },
                     new Category { CategoryId = 4, CategoryName = "Horror" },
-                    new Category { CategoryId = 5, CategoryName = "N/A" }
+                    new Category { CategoryId = 5, CategoryName = "Other" }
 
                 );
 
